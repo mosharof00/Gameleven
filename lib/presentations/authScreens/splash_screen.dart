@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:gameleven/presentations/authScreens/skip_screes.dart';
 import 'package:gameleven/utils/const.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,14 +13,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   Timer(const Duration(seconds: 3), () {
-  //     MaterialPageRoute(builder: (context) => );
-  //   });
-
-  // }
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Get.offAll(SkipScreen());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
       height: MediaQuery.of(context).size.height,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xffD81D4C).withOpacity(0.6)],
-          stops: [0.1],
+          colors: [
+            Colors.white,
+            splashPrimaryColor,
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           // transform: GradientRotation(math.pi /4)
