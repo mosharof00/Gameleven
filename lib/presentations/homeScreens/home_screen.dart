@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SkipScreen extends StatefulWidget {
-  const SkipScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<SkipScreen> createState() => _SkipScreenState();
+  State<HomeScreen> createState() => _SkipScreenState();
 }
 
-class _SkipScreenState extends State<SkipScreen> {
+class _SkipScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

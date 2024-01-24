@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "647659533466",
+    "project_id": "flutter-e-commerce-app-fda4a",
+    "storage_bucket": "flutter-e-commerce-app-fda4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647659533466:android:609020dc258f9e07bd5b23",
+        "android_client_info": {
+          "package_name": "com.example.gameleven"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCjmGs8kpr9t16L2sUCpYpbyVaU7buDyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

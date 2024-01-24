@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:gameleven/presentations/authScreens/skip_screes.dart';
+import 'package:gameleven/presentations/authScreens/onbord_screens.dart';
 import 'package:gameleven/utils/const.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      Get.offAll(SkipScreen());
+      Get.offAll(OnbordScreens());
     });
   }
 
