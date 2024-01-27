@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gameleven/presentations/authScreens/auth_ui_helper.dart';
-import 'package:gameleven/presentations/homeScreens/home_screen.dart';
+import 'package:gameleven/presentations/authScreens/signIn_screen.dart';
 import 'package:gameleven/utils/const.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 class OnbordScreens extends StatefulWidget {
   const OnbordScreens({
@@ -15,6 +15,8 @@ class OnbordScreens extends StatefulWidget {
 
 class _OnbordScreensState extends State<OnbordScreens> {
   late PageController _pageController;
+  int _pageIndex = 0;
+
   @override
   void initState() {
     _pageController = PageController(initialPage: 0);
@@ -36,32 +38,45 @@ class _OnbordScreensState extends State<OnbordScreens> {
           Expanded(
               child: PageView.builder(
                   controller: _pageController,
-                  itemCount: demu_data.length,
+                  itemCount: demo_data.length,
+                  onPageChanged: (index) {
+                    setState(() {
+                      _pageIndex = index;
+                    });
+                  },
                   itemBuilder: (context, index) => OnbordContent(
-                      image: demu_data[index].image,
-                      title: demu_data[index].title,
-                      description: demu_data[index].description))),
-          ...List.generate(
-              demu_data.length,
-              (index) => Padding(
-                  padding: const EdgeInsets.only(
-                    right: 4,
-                  ),
-                  child: DotIndicator(isActive: index == 1))),
+                      image: demo_data[index].image,
+                      title: demo_data[index].title,
+                      description: demo_data[index].description))),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...List.generate(
+                  demo_data.length,
+                  (index) => Padding(
+                      padding: const EdgeInsets.only(
+                        right: 4,
+                      ),
+                      child: DotIndicator(isActive: index == _pageIndex))),
+            ],
+          ),
           const SizedBox(
-            height: 70,
+            height: 60,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               InkWell(
                 onTap: () {
-                  if (_pageController.initialPage == 3) {
-                    Get.offAll(HomeScreen());
+                  if (_pageIndex == 2) {
+                  
+                     Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const SignInScreen()));
                   } else {
                     _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.ease);
+                      curve: Curves.ease,
+                      duration: const Duration(milliseconds: 300),
+                    );
                   }
                 },
                 child: const Text(
@@ -84,15 +99,18 @@ class _OnbordScreensState extends State<OnbordScreens> {
 }
 
 class DotIndicator extends StatelessWidget {
-  const DotIndicator({super.key, this.isActive = false});
+  const DotIndicator({Key? key, this.isActive = false}) : super(key: key);
   final bool isActive;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: isActive ? 15 : 5,
+    return AnimatedContainer(
+      duration: const Duration(microseconds: 300),
+      height: isActive ? 13 : 5,
       width: 5,
       decoration: BoxDecoration(
-          color: primaryColor, borderRadius: BorderRadius.circular(12)),
+        color: isActive ? primaryColor : primaryColor.withOpacity(0.4),
+        // borderRadius: BorderRadius.circular(12)
+      ),
     );
   }
 }
@@ -102,7 +120,7 @@ class Onbord {
   Onbord({required this.image, required this.title, required this.description});
 }
 
-final List<Onbord> demu_data = [
+final List<Onbord> demo_data = [
   Onbord(
       image: 'assets/images/66fef2332cebef40c02d550ee1b9b20B.png',
       title: 'Gaming Collection',
